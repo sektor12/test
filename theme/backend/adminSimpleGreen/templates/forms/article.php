@@ -18,12 +18,14 @@
             <label for="articleimage">Choose images:</label>
             <input name="articleimage[]" class="articleimage" type="file" />
         <?php else: ?>
-            <?php foreach ($singleArticle['images'] as $image): ?>
-                <div class="image">
-                    <img src="/files/images/<?php print $image['filename']; ?>"/>
-                    <a href="#" class="img-remove" id="<?php print $image['id']; ?>">Remove</a>
-                </div>
-            <?php endforeach; ?>
+            <?php if (!empty($singleArticle['files'])): ?>
+                <?php foreach ($singleArticle['files'] as $image): ?>
+                    <div class="image">
+                        <img src="/files/images/<?php print $image['filename']; ?>"/>
+                        <a href="#" class="img-remove" id="<?php print $image['id']; ?>">Remove</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 
