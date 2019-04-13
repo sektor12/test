@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: $default-font;
+    font-size: $default-font-size;
+    overflow-y: scroll;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    
+    &:hover {
+        color: darken($link-color, 20%);
+    }
+}
+
+.messages-placeholder {
+    margin: 15px;
+
+    .messages-rectangle {
+        padding: 10px;
+
+        &.error {
+            background-color: lighten($error-color, 35%);
+            border: solid 1px $error-color;
+        }
+
+        &.success {
+            border: solid 1px $success-color;
+            background-color: lighten($success-color, 65%);
+        }
+
+        .message {
+            &.error {
+                color: $error-color;
+            }
+
+            &.success {
+                color: $success-color;
+            }
+        }
+    }
+}
+
+.top-bar {
+    background-color: gray;
+    padding: 10px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    .top-bar-navigation {
+
+        ul {
+            padding: 0;
+            margin: 0;
+
+            li {
+                list-style: none;
+                display: inline-block;
+                margin-right: 10px;
+                
+                a:hover {
+                    color: darken($link-color, 10%);
+                }
+            }
+        }
+    }
+    
+    .user-logout-box {
+        float: right;
+        margin-top: -15px;
+    }
+}
+
+.content {
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 70px;
+    
+    .messages-placeholder {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.article-list {
+    text-align: left;
+    
+    tr{
+        td, th {
+            vertical-align: top;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-bottom: solid 1px #e0e0e0;
+            padding-right: 15px;
+            
+            &:nth-child(2) {
+                width: 100px;
+            }
+        }
+    }
+
+    .delete-btn {
+        color: #a53535;
+        
+        &:hover {
+            color: darken(#a53535, 10%);
+        }
+    }
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: right;
+    
+    a {
+        border: solid 1px $link-color;
+        padding: 2px 5px;
+        font-size: 12px;
+        
+        &.active {
+            border: solid 1px darken($link-color, 20%);
+            color: darken($link-color, 20%);
+        }
+    }
+}

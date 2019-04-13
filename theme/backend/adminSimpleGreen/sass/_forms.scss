@@ -1,0 +1,129 @@
+form {
+    
+    .form-field {
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 3px;
+        }
+        
+        .form-text {
+            border: solid 1px #e0e0e0;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        
+        .form-submit {
+            background-color: $link-color;
+            font-weight: bold;
+            color: white;
+            border: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 7px 16px;
+            
+            &:hover {
+                background-color: darken($link-color, 10%);
+                cursor: pointer;
+            }
+        }
+    }
+    
+    &.login {
+        left: 50%;
+        margin-left: -115px;
+        width: 230px;
+        text-align: left;
+        position: absolute;
+        top: 50%;
+        margin-top: -200px;
+        
+        label{
+            text-align: left;
+        }
+        
+        .form-text {
+            width: 100%;
+        }
+        
+        .form-submit {
+            float: right;
+        }
+    }
+    
+    &.add-article,
+    &.add-article {
+        
+        .article-images {
+            background-color: #efeeee;
+            padding: 10px;
+            
+            .articleimage {
+                display: block;
+                margin-bottom: 15px;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .image {
+                width: 200px;
+                position: relative;
+                margin-bottom: 15px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                * {
+                    vertical-align: middle;
+                }
+
+                img {
+                    width: 100%;
+                    display: inline-block;
+                    max-width: 140px;
+                }
+
+                a {
+                    display: inline-block;
+                    background-color: $link-color;
+                    top: 0;
+                    bottom: 0;
+                    position: absolute;
+                    color: white;
+                    padding-top: 38px;
+                    padding-left: 6px;
+                    padding-right: 6px;
+                    
+                    &:hover {
+                       background-color: darken($link-color, 10%);
+                    }
+                }
+            }
+        }
+
+        .add-more-images {
+            margin-bottom: 20px;
+            display: block;
+        }
+    }
+}
+
+.filter-by-user {
+    margin-bottom: 15px;
+
+    .form-field, .form-field label {
+        display: inline-block;
+    }
+    
+    .form-field {
+        margin-right: 10px;
+    }
+}

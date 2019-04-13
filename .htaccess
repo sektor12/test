@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ^admin$ /core [L,QSA]
+RewriteRule ^admin/(.*) /core/$1 [L,QSA]
