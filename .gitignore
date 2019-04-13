@@ -2,3 +2,4 @@ theme/backend/adminSimpleGreen/node_modules
 theme/frontend/myTheme/node_modules/
 !files/images
 files/images/*
+config.php
