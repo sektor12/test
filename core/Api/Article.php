@@ -33,6 +33,13 @@ if (isset($_SESSION['uid'])) {
         $paginationHtml = ob_get_contents();
         ob_end_clean();
         $output['pagination'] = $paginationHtml;
+        $output['success'] = true;
+    } else if (isset($_POST['method'])) {
+        if ($_POST['method'][0] == 'delete') {
+            $article = new Article();
+            $article->deleteArticle($_POST['id'][0]);
+            $output = ['success' => true];
+        }
     }
 }
 

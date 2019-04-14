@@ -64,6 +64,8 @@ var api = {
             });
         }
         api.bindPagination();
+        api.bindDeletion();
+        api.bindArticleCreation();
         
     },
     bindListing: function() {
@@ -78,6 +80,7 @@ var api = {
             $('.article-list').replaceWith(data.table);
             $('.pagination').replaceWith(data.pagination);
             api.bindPagination();
+            api.bindDeletion();
         });
     },
     bindPagination: function() {
@@ -105,14 +108,39 @@ var api = {
                     $('.article-list').replaceWith(data.table);
                     $('.pagination').replaceWith(data.pagination);
                     api.bindPagination();
+                    api.bindDeletion();
                 });
             });
         }
+    },
+    bindDeletion: function() {
+        if ($('.delete-btn').length != 0) {
+            $('.delete-btn').click(function(e) {
+                e.preventDefault();
+                var _this = $(this);
+                var href = window.location.protocol + '//' + window.location.hostname + $(this).attr('href');
+                var params = services.parseUrlParams(href);
+                $.ajax({
+                    method: "POST",
+                    url: "/core/Api/Article.php",
+                    data: params
+                }).done(function( data ) {
+                    _this.closest('tr').fadeOut('slow');
+                });
+            });
+        }        
+    },
+    bindArticleCreation: function() {
+        // ... to be done ...
+        // Plan was to base64 encode image and transfer it to the api script
+        // From there export to files directory and call existing functions for storing article...
     }
 }
 
 $(document).ready(function(){
     article.init();
+    
+    // If you don't want to use Ajax, comment out line below
     api.init();
 });
 
