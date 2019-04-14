@@ -11,6 +11,7 @@
                 include $themeDir . '/templates/forms/article.php';
             } else if (isset($_GET['action']) && $_GET['action'] == 'articles') {
                 include $themeDir . '/templates/articleList.php';
+                include $themeDir . '/templates/pagination.php';
             }
         ?>
     </div>

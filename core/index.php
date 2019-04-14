@@ -3,11 +3,6 @@
 include $_SERVER['DOCUMENT_ROOT'] . '/core/Snippets/Messages.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
-/**
- * Controlling user session
- */
-session_start();
-
 use Controllers\Article;
 use Controllers\User;
 

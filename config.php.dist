@@ -22,3 +22,8 @@ spl_autoload_register(function($className) {
         return;
     }
 });
+
+/**
+ * Controlling user session
+ */
+session_start();

@@ -1,3 +1,24 @@
+var services = {
+    parseUrlParams: function (url) {
+        var queryStart = url.indexOf("?") + 1,
+            queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+            query = url.slice(queryStart, queryEnd - 1),
+            pairs = query.replace(/\+/g, " ").split("&"),
+            parms = {}, i, n, v, nv;
+
+        if (query === url || query === "") return;
+
+        for (i = 0; i < pairs.length; i++) {
+            nv = pairs[i].split("=", 2);
+            n = decodeURIComponent(nv[0]);
+            v = decodeURIComponent(nv[1]);
+
+            if (!parms.hasOwnProperty(n)) parms[n] = [];
+            parms[n].push(nv.length === 2 ? v : null);
+        }
+        return parms;
+    }
+}
 var article = {
     init: function() {
         if ($('.img-remove').length != 0) {
@@ -34,8 +55,64 @@ var article = {
         }
     }
 }
+var api = {
+    init: function() {
+        if ($('.filter-by-user .form-submit').length != 0) {
+            $('.filter-by-user .form-submit').click(function(e) {
+                e.preventDefault();
+                api.bindListing();
+            });
+        }
+        api.bindPagination();
+        
+    },
+    bindListing: function() {
+        var form = $('.filter-by-user');
+        var serializedForm = form.serializeArray();
+        
+        $.ajax({
+            method: "POST",
+            url: "/core/Api/Article.php",
+            data: serializedForm
+        }).done(function( data ) {
+            $('.article-list').replaceWith(data.table);
+            $('.pagination').replaceWith(data.pagination);
+            api.bindPagination();
+        });
+    },
+    bindPagination: function() {
+        if ($('.pagination').length != 0) {
+            $('.pagination a').click(function(e) {
+                e.preventDefault();
+                var href = window.location.protocol + '//' + window.location.hostname + $(this).attr('href');
+                var params = services.parseUrlParams(href);
+
+                var data = {
+                    'page': params.page[0],
+                    'action': 'pagination',
+                    'filterby': $('select[name="filterby"]').val()
+                }
+
+                if (params.filter) {
+                    data.filter = params.filter;
+                }
+
+                $.ajax({
+                    method: "POST",
+                    url: "/core/Api/Article.php",
+                    data: data
+                }).done(function( data ) {
+                    $('.article-list').replaceWith(data.table);
+                    $('.pagination').replaceWith(data.pagination);
+                    api.bindPagination();
+                });
+            });
+        }
+    }
+}
 
 $(document).ready(function(){
     article.init();
+    api.init();
 });
 
